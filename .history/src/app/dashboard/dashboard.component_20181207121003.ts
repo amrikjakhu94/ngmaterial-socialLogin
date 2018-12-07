@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../core/services/api.service';
 import { JwtService } from '../core/services/jwt.service';
 import { Router } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-dashboard',
@@ -13,46 +13,11 @@ export class DashboardComponent implements OnInit {
   user: Object;
   username: String;
   image: String;
-  imageUploadForm: FormGroup;
-  imageDetails: any;
-  fileName: any;
 
   constructor( private apiService: ApiService,
               private jwtService: JwtService,
               private router: Router,
-              private fb: FormBuilder) {
-    this.imageUploadForm = fb.group({
-      name : ['', Validators.required],
-      image : ['', Validators.required]
-    });
-  }
-
-  filechange(event: any) {
-    console.log(event,'111111');
-    this.fileName = <File>event.target.files[0];
-  }
-
-  onSubmit() {
-    this.imageDetails = this.imageUploadForm.value;
-    console.log(this.fileName, '222222222');
-
-    const fdd = new FormData();
-    fdd.append('name', this.imageUploadForm.value.name);
-    fdd.append('image', this.fileName, this.fileName.name);
-
-    this.apiService.imageUploadRequest(fdd).subscribe(
-      upload => {
-        if (upload) {
-          console.log(upload);
-          // this.router.navigate(['/dashboard']);
-          this.getMyProfile();
-        }
-      },
-      error => {
-        console.log(error);
-      }
-    );
-  }
+              private fb: FormBuilder) { }
 
   destroyToken() {
     this.jwtService.destroyToken();

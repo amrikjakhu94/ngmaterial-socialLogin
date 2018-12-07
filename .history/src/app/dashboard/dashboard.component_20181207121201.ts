@@ -15,7 +15,6 @@ export class DashboardComponent implements OnInit {
   image: String;
   imageUploadForm: FormGroup;
   imageDetails: any;
-  fileName: any;
 
   constructor( private apiService: ApiService,
               private jwtService: JwtService,
@@ -27,14 +26,9 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  filechange(event: any) {
-    console.log(event,'111111');
-    this.fileName = <File>event.target.files[0];
-  }
-
   onSubmit() {
     this.imageDetails = this.imageUploadForm.value;
-    console.log(this.fileName, '222222222');
+    console.log(this.fileName, '2222222222222222222222');
 
     const fdd = new FormData();
     fdd.append('name', this.imageUploadForm.value.name);
@@ -44,12 +38,15 @@ export class DashboardComponent implements OnInit {
       upload => {
         if (upload) {
           console.log(upload);
+          this.signupSpinner = false;
+          this.toasterService.showSuccess(upload.success, 'Success');
           // this.router.navigate(['/dashboard']);
-          this.getMyProfile();
+          this.myprofile();
         }
       },
       error => {
-        console.log(error);
+        this.signupSpinner = false;
+        this.toasterService.showError(error.error.error, 'Error');
       }
     );
   }

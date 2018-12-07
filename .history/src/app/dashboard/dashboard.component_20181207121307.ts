@@ -27,14 +27,9 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  filechange(event: any) {
-    console.log(event,'111111');
-    this.fileName = <File>event.target.files[0];
-  }
-
   onSubmit() {
     this.imageDetails = this.imageUploadForm.value;
-    console.log(this.fileName, '222222222');
+    console.log(this.fileName, '2222222222222222222222');
 
     const fdd = new FormData();
     fdd.append('name', this.imageUploadForm.value.name);

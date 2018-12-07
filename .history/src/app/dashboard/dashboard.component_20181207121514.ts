@@ -34,7 +34,7 @@ export class DashboardComponent implements OnInit {
 
   onSubmit() {
     this.imageDetails = this.imageUploadForm.value;
-    console.log(this.fileName, '222222222');
+    console.log(this.fileName, '2222222222222222222222');
 
     const fdd = new FormData();
     fdd.append('name', this.imageUploadForm.value.name);
