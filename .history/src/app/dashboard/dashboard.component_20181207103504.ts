@@ -26,8 +26,6 @@ export class DashboardComponent implements OnInit {
     this.apiService.getMyProfile().subscribe(
       profile => {
         this.user = profile;
-        this.username = this.user['name'];
-        this.image = this.user['image'];
         console.log(this.user);
       },
       error => {

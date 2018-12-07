@@ -1,0 +1,18 @@
+<ul>
+  <li>
+    <a>Welcome {{ user.name }}</a>
+  </li>
+  <li>
+    <a (click)="destroyToken()">Logout</a>
+  </li>
+</ul>
+<br>
+<hr>
+<div class="row">
+  <div class="col col-md-4">
+    {{ user.name }}
+  </div>
+  <div class="col col-md-4">
+    <img src="{{user.image}}" style="max-width:150px;" alt="Profile picture" />
+  </div>
+</div>

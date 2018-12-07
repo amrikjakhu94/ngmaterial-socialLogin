@@ -30,21 +30,10 @@ export class ApiService {
     // return this.http.post('https://stormy-ravine-20860.herokuapp.com/signin',signIn);
   }
 
-  socialSignInRequest(socialSignIn: Object): Observable<any> {
-    return this.http.post('http://localhost:3000/socialsignin', socialSignIn);
-    // return this.http.post('https://stormy-ravine-20860.herokuapp.com/signin',signIn);
-  }
-
   signUpRequest(signUp: Object): Observable<any> {
     console.log('Entered signUp request  in apiService');
     return this.http.post('http://localhost:3000/signup', signUp);
     // return this.http.post('https://stormy-ravine-20860.herokuapp.com/signup',signUp);
-  }
-
-  getMyProfile() {
-    const httpOptions = this.gethttpOptions();
-    return this.http.get('http://localhost:3000/myprofile', httpOptions);
-    // return this.http.post('https://stormy-ravine-20860.herokuapp.com/myprofile',httpOptions);
   }
 
   isAuthenticated() {

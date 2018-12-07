@@ -6,8 +6,6 @@ import { MatButtonModule, MatCheckboxModule, MatAutocompleteModule, MatFormField
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
-import { NgSocialModule, AuthServiceConfig, GoogleLoginProvider, FacebookLoginProvider } from 'ng-social';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SigninComponent } from './signin/signin.component';
@@ -59,12 +57,7 @@ export function getAuthServiceConfigs() {
     FlexLayoutModule.withConfig({addFlexToParent: false}),
     HttpClientModule
   ],
-  providers: [
-    {
-      provide: AuthServiceConfig,
-      useFactory: getAuthServiceConfigs
-    },
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

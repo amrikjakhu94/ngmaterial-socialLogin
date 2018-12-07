@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { SocialAuthService, FacebookLoginProvider, GoogleLoginProvider } from 'ng-social';
-
 import { Validators, FormControl, FormGroup, FormBuilder } from '@angular/forms';
 import { ApiService } from '../core/services/api.service';
 import { Router } from '@angular/router';
@@ -14,10 +12,8 @@ import { JwtService } from '../core/services/jwt.service';
 export class SigninComponent implements OnInit {
   signInForm: FormGroup;
   signInDetails: any;
-  socialSignInDetails: any;
 
   constructor(private fb: FormBuilder,
-              private socialAuthService: SocialAuthService,
               private apiService: ApiService,
               private jwtService: JwtService,
               private router: Router) {
@@ -73,8 +69,8 @@ export class SigninComponent implements OnInit {
           socialuser => {
             const userDetails = { socialuser , isLogin : true };
             this.jwtService.saveToken(socialuser.token);
-            // this.apiService.sendIsLoginValue(userDetails);
-            // this.toasterService.showSuccess('Welcome ' + userDetails.socialuser.user.name, 'Login Success');
+            this.apiService.sendIsLoginValue(userDetails);
+            this.toasterService.showSuccess('Welcome ' + userDetails.socialuser.user.name, 'Login Success');
             this.router.navigate(['/dashboard']);
           }
         );

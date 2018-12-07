@@ -8,6 +8,9 @@ import { JwtService } from './jwt.service';
   providedIn: 'root'
 })
 export class ApiService {
+  socialSignInRequest(socialSignInDetails: any): any {
+    throw new Error("Method not implemented.");
+  }
   token: String;
   constructor(private http: HttpClient,
               private jwtService: JwtService) { }

@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { SocialAuthService, FacebookLoginProvider, GoogleLoginProvider } from 'ng-social';
-
 import { Validators, FormControl, FormGroup, FormBuilder } from '@angular/forms';
 import { ApiService } from '../core/services/api.service';
 import { Router } from '@angular/router';
@@ -14,10 +12,8 @@ import { JwtService } from '../core/services/jwt.service';
 export class SigninComponent implements OnInit {
   signInForm: FormGroup;
   signInDetails: any;
-  socialSignInDetails: any;
 
   constructor(private fb: FormBuilder,
-              private socialAuthService: SocialAuthService,
               private apiService: ApiService,
               private jwtService: JwtService,
               private router: Router) {
@@ -55,31 +51,6 @@ export class SigninComponent implements OnInit {
       }
     );
   }
-
-  public socialLogin(platform: string) {
-    let socialPlatformProvider;
-
-    if (platform === 'facebook') {
-      socialPlatformProvider = FacebookLoginProvider.PROVIDER_ID;
-    } else if (platform === 'google') {
-      socialPlatformProvider = GoogleLoginProvider.PROVIDER_ID;
-    }
-
-    this.socialAuthService.signIn(socialPlatformProvider).then(
-      (socialUserData) => {
-        this.socialSignInDetails = socialUserData;
-        console.log(this.socialSignInDetails);
-        this.apiService.socialSignInRequest(this.socialSignInDetails).subscribe(
-          socialuser => {
-            const userDetails = { socialuser , isLogin : true };
-            this.jwtService.saveToken(socialuser.token);
-            // this.apiService.sendIsLoginValue(userDetails);
-            // this.toasterService.showSuccess('Welcome ' + userDetails.socialuser.user.name, 'Login Success');
-            this.router.navigate(['/dashboard']);
-          }
-        );
-      });
-    }
 
   ngOnInit() {
   }

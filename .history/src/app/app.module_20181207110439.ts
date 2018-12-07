@@ -59,12 +59,7 @@ export function getAuthServiceConfigs() {
     FlexLayoutModule.withConfig({addFlexToParent: false}),
     HttpClientModule
   ],
-  providers: [
-    {
-      provide: AuthServiceConfig,
-      useFactory: getAuthServiceConfigs
-    },
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

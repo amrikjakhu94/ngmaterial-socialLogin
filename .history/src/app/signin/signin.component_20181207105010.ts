@@ -14,7 +14,6 @@ import { JwtService } from '../core/services/jwt.service';
 export class SigninComponent implements OnInit {
   signInForm: FormGroup;
   signInDetails: any;
-  socialSignInDetails: any;
 
   constructor(private fb: FormBuilder,
               private socialAuthService: SocialAuthService,
@@ -73,8 +72,8 @@ export class SigninComponent implements OnInit {
           socialuser => {
             const userDetails = { socialuser , isLogin : true };
             this.jwtService.saveToken(socialuser.token);
-            // this.apiService.sendIsLoginValue(userDetails);
-            // this.toasterService.showSuccess('Welcome ' + userDetails.socialuser.user.name, 'Login Success');
+            this.apiService.sendIsLoginValue(userDetails);
+            this.toasterService.showSuccess('Welcome ' + userDetails.socialuser.user.name, 'Login Success');
             this.router.navigate(['/dashboard']);
           }
         );
